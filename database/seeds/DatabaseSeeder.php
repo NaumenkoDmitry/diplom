@@ -11,12 +11,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert(
-           array([
-               'name' => "Dima",
-               'email'=>"",
-           ])
-        );
+        $this->call([
+            UserSeeder::class,
+            CategoriesSeeder::class,
+            MediaTypesSeeder::class,
+            StatusesSeeder::class,
+            ArticlesTableSeeder::class,
+        ]);
 
     }
 }

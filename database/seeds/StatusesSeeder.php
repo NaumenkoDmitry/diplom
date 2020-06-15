@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CategoriesSeeder extends Seeder
+class StatusesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -22,7 +22,8 @@ class CategoriesSeeder extends Seeder
             'description' => "Материал снят с публикации"
         ]];
         collect($data)->each(function ($item) {
-            DB::table('categories')->insert($item);
+            DB::table('statuses')->insert($item);
         });
+
     }
 }
