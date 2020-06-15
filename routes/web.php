@@ -24,3 +24,10 @@ Route::get('/home', 'HomeController@index');
 Route::resource('statuses', 'StatusController');
 
 Route::resource('articles', 'ArticleController');
+
+Route::resource('media', 'MediaController');
+
+Route::resource('categories', 'CategoriesController');
+
+
+Route::resource('mediaTypes', 'MediaTypesController');

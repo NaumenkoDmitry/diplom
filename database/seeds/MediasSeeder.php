@@ -11,12 +11,6 @@ class MediasSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('categories')->insert(
-            array([
-                'name' => "Sport",
-                'title' => "s",
-
-            ])
-        );
+        factory(\App\Models\Media::class,10)->create();
     }
 }

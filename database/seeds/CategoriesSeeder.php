@@ -12,14 +12,14 @@ class CategoriesSeeder extends Seeder
     public function run()
     {
         $data = [[
-            'name' => "Опубликован",
-            'description' => "Материал разрешен для публикации"
+            'name' => "Спорт",
+            'description' => "Категория спорт"
         ], [
-            'name' => "На рассмотрении",
-            'description' => "Материал находится на  рассмторении"
+            'name' => "Музыка",
+            'description' => "Категория музыки"
         ], [
-            'name' => "Отключен",
-            'description' => "Материал снят с публикации"
+            'name' => "Искусство",
+            'description' => "Категория исскуства"
         ]];
         collect($data)->each(function ($item) {
             DB::table('categories')->insert($item);
