@@ -5,8 +5,29 @@
 use App\Models\Media;
 use Faker\Generator as Faker;
 
-$factory->define(Media::class, function (Faker $faker) {
 
+$factory->define(Media::class,  function ($faker) {
+    return [
+        'name' => $faker->word,
+        'title' => $faker->text(50),
+        'src' => $faker->word,
+        'description' => $faker->text,
+        'media_types_id' => 1,
+    ];
+});
+
+$factory->state(Media::class, 'video', function ($faker) {
+    return [
+        'name' => $faker->word,
+        'title' => $faker->text(50),
+        'src' => $faker->word,
+        'description' => $faker->text,
+        'media_types_id' => 2,
+    ];
+});
+
+$factory->state(Media::class, 'with_resources', function (Faker $faker) {
+    $fileNameHelper = new \App\Services\Images\ImageNameHelper();
     $mediaType = $faker->numberBetween(1, 2);
     echo "$mediaType\n";
     if ($mediaType == 1) {
@@ -15,7 +36,7 @@ $factory->define(Media::class, function (Faker $faker) {
             "fake_images/2.jpg",
         ];
         $file = \Illuminate\Support\Facades\Storage::path($faker->randomElement($files));
-        $src = md5(time() . $file) . ".jpg";
+        $src = $fileNameHelper->generateName($file);
         $service = \Illuminate\Support\Facades\App::make(\App\Services\Images\IImageService::class);
         $service->save($file, $src);
     } else {
@@ -33,3 +54,4 @@ $factory->define(Media::class, function (Faker $faker) {
         'media_types_id' => $mediaType,
     ];
 });
+

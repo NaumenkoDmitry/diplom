@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 
 namespace App\Services\Images;
 
@@ -18,18 +18,25 @@ class ImageNameHelper
     }
 
     /**
-     * @param UploadedFile $file
+     * @param UploadedFile|string $file
      * @param Carbon|null $date
      * @return string
      */
-    public function generateName(UploadedFile $file, Carbon $date = null): string
+    public function generateName($file, Carbon $date = null): string
     {
         $date = $date ?? Carbon::now();
-        $filename = $file->getClientOriginalName();
-        $ext = $file->getClientOriginalExtension();
-
-        return $date->format("ymdhms")."_".Str::slug(Str::lower($filename)).".$ext";
+        $result = '';
+        if ($file instanceof UploadedFile) {
+            $date = $date ?? Carbon::now();
+            $filename = $file->getClientOriginalName();
+            $ext = $file->getClientOriginalExtension();
+            $result = $date->format("YmdHis")."_".Str::slug(Str::lower($filename)).".$ext";
+        } else {
+            $result = $date->format("YmdHisu")."_".Str::slug(Str::lower($file));
+        }
+        return $result;
     }
+
 
 
 }

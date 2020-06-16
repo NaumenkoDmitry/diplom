@@ -6,12 +6,10 @@ use App\Http\Requests\CreateMediaRequest;
 use App\Http\Requests\UpdateMediaRequest;
 use App\Models\MediaTypes;
 use App\Repositories\MediaRepository;
-use App\Http\Controllers\AppBaseController;
 use App\Services\Images\IImageService;
 use App\Services\Images\ImageNameHelper;
-use GuzzleHttp\Psr7\UploadedFile;
-use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Http\Request;
 use Response;
 
 class MediaController extends AppBaseController
@@ -19,11 +17,13 @@ class MediaController extends AppBaseController
     /** @var  MediaRepository */
     private $mediaRepository;
     private $imageService;
+    private $imageNameHelper;
 
-    public function __construct(MediaRepository $mediaRepo, IImageService $imageService)
+    public function __construct(MediaRepository $mediaRepo, IImageService $imageService, ImageNameHelper $imageNameHelper)
     {
         $this->mediaRepository = $mediaRepo;
         $this->imageService = $imageService;
+        $this->imageNameHelper = $imageNameHelper;
     }
 
     /**
@@ -64,11 +64,7 @@ class MediaController extends AppBaseController
         $input = $request->all();
 
         if ($request->media_types_id == 1) {
-            $file = $request->file;
-            $fileHelper = new ImageNameHelper();
-            $storeFileName = $fileHelper->generateName($file);
-            $this->imageService->save($file->getRealPath(), $storeFileName);
-            $input['src'] = $storeFileName;
+            $input['src'] = $this->saveImage($request);
         }
 
         $media = $this->mediaRepository->create($input);
@@ -94,6 +90,7 @@ class MediaController extends AppBaseController
 
             return redirect(route('media.index'));
         }
+
 
         return view('media.show')->with('media', $media);
     }
@@ -136,8 +133,16 @@ class MediaController extends AppBaseController
 
             return redirect(route('media.index'));
         }
+        if ($media->media_types_id == 1) {
+            $this->imageService->remove($media->src);
+        }
 
-        $media = $this->mediaRepository->update($request->all(), $id);
+        $input = $request->all();
+        if ($request->media_types_id == 1) {
+            $input['src'] = $this->saveImage($request);
+        }
+
+        $media = $this->mediaRepository->update($input, $id);
 
         Flash::success('Media updated successfully.');
 
@@ -162,11 +167,30 @@ class MediaController extends AppBaseController
 
             return redirect(route('media.index'));
         }
+        try {
+            if ($media->media_types_id == 1) {
+                $this->imageService->remove($media->src);
+            }
+            $this->mediaRepository->delete($id);
+            Flash::success('Media deleted successfully.');
+        } catch (\Exception $e) {
+            Flash::error($e->getMessage());
+        }
 
-        $this->mediaRepository->delete($id);
-
-        Flash::success('Media deleted successfully.');
 
         return redirect(route('media.index'));
+    }
+
+    /**
+     * @param UpdateMediaRequest $request
+     * @return string
+     */
+    protected function saveImage(Request $request): string
+    {
+        $file = $request->file;
+        $storeFileName = $this->imageNameHelper->generateName($file);
+        $this->imageService->save($file->getRealPath(), $storeFileName);
+        return $storeFileName;
+
     }
 }

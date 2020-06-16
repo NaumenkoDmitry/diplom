@@ -11,6 +11,6 @@ class MediasSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Media::class,10)->create();
+        factory(\App\Models\Media::class,10)->state("with_resources")->create();
     }
 }
