@@ -18,7 +18,7 @@
                          <div class="card-body">
                              @include('articles.table')
                               <div class="pull-right mr-3">
-                                     
+
         @include('coreui-templates::common.paginate', ['records' => $articles])
 
                               </div>

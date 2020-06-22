@@ -12,6 +12,7 @@ $factory->define(Media::class,  function ($faker) {
         'title' => $faker->text(50),
         'src' => $faker->word,
         'description' => $faker->text,
+        'user_id'=>1,
         'media_types_id' => 1,
     ];
 });
@@ -22,6 +23,7 @@ $factory->state(Media::class, 'video', function ($faker) {
         'title' => $faker->text(50),
         'src' => $faker->word,
         'description' => $faker->text,
+        'user_id'=>1,
         'media_types_id' => 2,
     ];
 });
@@ -52,6 +54,7 @@ $factory->state(Media::class, 'with_resources', function (Faker $faker) {
         'src' => $src,
         'description' => $faker->text,
         'media_types_id' => $mediaType,
+        'user_id'=>1,
     ];
 });
 

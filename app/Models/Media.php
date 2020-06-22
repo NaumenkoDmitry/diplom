@@ -30,6 +30,7 @@ class Media extends Model
         'src',
         'description',
         'media_types_id',
+        'user_id'
     ];
 
     /**
@@ -44,6 +45,7 @@ class Media extends Model
         'src' => 'string',
         'description' => 'string',
         'media_types_id'=>'integer',
+        'user_id'=>'integer',
     ];
 
     /**

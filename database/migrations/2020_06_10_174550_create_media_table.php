@@ -20,7 +20,9 @@ class CreateMediaTable extends Migration
             $table->string('src')->nullable();
             $table->text('description')->nullable();
             $table->unsignedBigInteger('media_types_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('media_types_id')->references('id')->on('media_types');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

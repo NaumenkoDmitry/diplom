@@ -24,6 +24,7 @@ class MediaController extends AppBaseController
         $this->mediaRepository = $mediaRepo;
         $this->imageService = $imageService;
         $this->imageNameHelper = $imageNameHelper;
+        $this->middleware("auth");
     }
 
     /**
@@ -66,7 +67,7 @@ class MediaController extends AppBaseController
         if ($request->media_types_id == 1) {
             $input['src'] = $this->saveImage($request);
         }
-
+        $input['user_id'] = $request->user()->id;
         $media = $this->mediaRepository->create($input);
 
         Flash::success('Media saved successfully.');
@@ -138,6 +139,7 @@ class MediaController extends AppBaseController
         }
 
         $input = $request->all();
+        $input['user_id'] = $request->user()->id;
         if ($request->media_types_id == 1) {
             $input['src'] = $this->saveImage($request);
         }

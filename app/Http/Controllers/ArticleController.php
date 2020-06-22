@@ -18,6 +18,7 @@ class ArticleController extends AppBaseController
     public function __construct(ArticleRepository $articleRepo)
     {
         $this->articleRepository = $articleRepo;
+
     }
 
     /**
@@ -29,6 +30,7 @@ class ArticleController extends AppBaseController
      */
     public function index(Request $request)
     {
+        $this->articleRepository->with(['user','status']);
         $articles = $this->articleRepository->paginate(25);
 
         return view('articles.index')
@@ -72,6 +74,7 @@ class ArticleController extends AppBaseController
      */
     public function show($id)
     {
+        $this->articleRepository->with(['user','status','media']);
         $article = $this->articleRepository->find($id);
 
         if (empty($article)) {
@@ -120,9 +123,9 @@ class ArticleController extends AppBaseController
 
             return redirect(route('articles.index'));
         }
-
+        $mediaIds = $request->media;
         $article = $this->articleRepository->update($request->all(), $id);
-
+        $article->media()->sync($mediaIds);
         Flash::success('Article updated successfully.');
 
         return redirect(route('articles.index'));

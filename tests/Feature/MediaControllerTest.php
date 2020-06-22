@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Media;
 use App\Models\MediaTypes;
 use App\Services\Images\ImageNameHelper;
+use http\Client\Curl\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -28,6 +29,9 @@ class MediaControllerTest extends TestCase
         $this->app->instance(ImageNameHelper::class, $mock);
         factory(MediaTypes::class,2)->create();
         Storage::fake('local');
+        $user = factory(\App\User::class,1)->create()->first();
+        $this->actingAs($user);
+
     }
 
     public function testStoreImage()

@@ -5,8 +5,8 @@
                 <th>Title</th>
         <th>Short Text</th>
         <th>Text</th>
-        <th>Status Id</th>
-        <th>User Id</th>
+        <th>Status </th>
+        <th>User </th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
@@ -14,10 +14,10 @@
         @foreach($articles as $article)
             <tr>
                 <td>{{ $article->title }}</td>
-            <td>{{ $article->short_text }}</td>
-            <td>{{ $article->text }}</td>
-            <td>{{ $article->status_id }}</td>
-            <td>{{ $article->user_id }}</td>
+            <td>{!! strip_tags($article->short_text) !!}</td>
+            <td>{!! strip_tags($article->text) !!}</td>
+            <td>{{ $article->status->name }}</td>
+            <td>{{ $article->user->name }}</td>
                 <td>
                     {!! Form::open(['route' => ['articles.destroy', $article->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
