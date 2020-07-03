@@ -32,7 +32,8 @@ class ImageNameHelper
             $ext = $file->getClientOriginalExtension();
             $result = $date->format("YmdHis")."_".Str::slug(Str::lower($filename)).".$ext";
         } else {
-            $result = $date->format("YmdHisu")."_".Str::slug(Str::lower($file));
+            $fileInfo = explode(".", $file);
+            $result = $date->format("YmdHisu")."_".Str::slug(Str::lower($fileInfo[0])).".jpg";
         }
         return $result;
     }

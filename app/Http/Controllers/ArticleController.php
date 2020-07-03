@@ -30,8 +30,15 @@ class ArticleController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->articleRepository->with(['user','status']);
-        $articles = $this->articleRepository->paginate(25);
+
+        $this->articleRepository->with(['user','status','categories']);
+        if ($request->has("filter")) {
+            $filter = $request->filter;
+            $articles = $this->articleRepository->allQuery()->orWhere('title','like', "%$filter%")->paginate(25);
+
+        } else {
+            $articles = $this->articleRepository->paginate(25);
+        }
 
         return view('articles.index')
             ->with('articles', $articles);

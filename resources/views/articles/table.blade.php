@@ -5,6 +5,7 @@
                 <th>Title</th>
         <th>Short Text</th>
         <th>Text</th>
+          <th>Categories </th>
         <th>Status </th>
         <th>User </th>
                 <th colspan="3">Action</th>
@@ -16,6 +17,7 @@
                 <td>{{ $article->title }}</td>
             <td>{!! strip_tags($article->short_text) !!}</td>
             <td>{!! strip_tags($article->text) !!}</td>
+                <td>{{ $article->categoriess }}</td>
             <td>{{ $article->status->name }}</td>
             <td>{{ $article->user->name }}</td>
                 <td>

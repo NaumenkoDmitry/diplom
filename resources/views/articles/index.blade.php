@@ -14,6 +14,7 @@
                              <i class="fa fa-align-justify"></i>
                              Articles
                              <a class="pull-right" href="{{ route('articles.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
+                              @include('articles.search-form')
                          </div>
                          <div class="card-body">
                              @include('articles.table')

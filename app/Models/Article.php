@@ -82,7 +82,7 @@ class Article extends Model
      **/
     public function categories()
     {
-        return $this->belongsToMany(\App\Models\Category::class, 'article_category');
+        return $this->belongsTo(\App\Models\Categories::class, 'article_category');
     }
 
     /**

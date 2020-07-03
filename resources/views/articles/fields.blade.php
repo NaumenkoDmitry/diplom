@@ -17,6 +17,13 @@
     {!! Form::textarea('text', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Categories Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('article_category', 'Categories:') !!}
+    {!! Form::select('article_category', \App\Models\Categories::all()->pluck('name', 'id'), null, ['class' => 'form-control']) !!}
+</div>
+
+
 <!-- Status Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('status_id', 'Status:') !!}
@@ -30,10 +37,7 @@
     {!! Form::select('user_id', \App\User::all()->pluck('name', 'id'), Auth::user()->id, ['class' => 'form-control']) !!}
 </div>
 
-<div class="form-group col-sm-6">
-    {!! Form::label('user_id', 'User:') !!}
-    {!! Form::select('user_id', \App\User::all()->pluck('name', 'id'), Auth::user()->id, ['class' => 'form-control']) !!}
-</div>
+
 
 <div class="nav-tabs-boxed nav-tabs-boxed-top-right">
     <ul class="nav nav-tabs" role="tablist">
@@ -41,6 +45,7 @@
         <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#video" role="tab" aria-controls="profile" aria-selected="false">Video</a></li>
     </ul>
     <div class="tab-content">
+
         <div class="tab-pane active" id="img" role="tabpanel">
             <div>
                 @foreach(\App\Models\Media::where("media_types_id",'=',1)->whereUserId(Auth::user()->getAuthIdentifier())->get() as $item)

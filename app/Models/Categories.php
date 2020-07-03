@@ -61,6 +61,6 @@ class Categories extends Model
      **/
     public function articles()
     {
-        return $this->belongsToMany(\App\Models\Article::class, 'article_category');
+        return $this->hasMany(\App\Models\Article::class, 'article_category');
     }
 }

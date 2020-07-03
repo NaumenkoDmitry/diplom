@@ -11,23 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::group(['namespace'=>"\App\Http\Controllers\Frontend"], function(){
+    Route::get("/", "HomeController@index")->name("home");
+    Route::get("/category/{id}", "HomeController@category")->name("category");
+    Route::get("/article/{id}", "HomeController@article")->name("article");
+
 });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index');
-
-
-
 Route::resource('statuses', 'StatusController');
-
 Route::resource('articles', 'ArticleController');
-
 Route::resource('media', 'MediaController');
-
 Route::resource('categories', 'CategoriesController');
-
-
 Route::resource('mediaTypes', 'MediaTypesController');
