@@ -12,177 +12,152 @@
 
 namespace App\Models{
 /**
- * Class CreditSlip
+ * Class Article
  *
  * @package App\Models
- * @version January 4, 2020, 6:31 pm UTC
- * @property \App\Models\Store store
- * @property \Illuminate\Database\Eloquent\Collection products
- * @property integer store_id
+ * @version June 11, 2020, 8:21 pm UTC
+ * @property \App\Models\Status $status
+ * @property \App\Models\User $user
+ * @property \Illuminate\Database\Eloquent\Collection $categories
+ * @property \Illuminate\Database\Eloquent\Collection $media
+ * @property string $title
+ * @property string $short_text
+ * @property string $text
+ * @property integer $status_id
+ * @property integer $user_id
  * @property int $id
- * @property int $store_id
+ * @property string $slug
+ * @property int|null $comment_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
- * @property-read int|null $products_count
- * @property-read \App\Models\Store $store
- * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CreditSlip newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CreditSlip newQuery()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\CreditSlip onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CreditSlip query()
- * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CreditSlip whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CreditSlip whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CreditSlip whereStoreId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CreditSlip whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\CreditSlip withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\CreditSlip withoutTrashed()
+ * @property-read int|null $media_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article whereCommentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article whereShortText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article whereStatusId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article whereText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article whereUserId($value)
  */
-	class CreditSlip extends \Eloquent {}
+	class Article extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * Class DebitSlip
+ * Class Categories
  *
  * @package App\Models
- * @version January 4, 2020, 6:32 pm UTC
- * @property \App\Models\Store store
- * @property \Illuminate\Database\Eloquent\Collection products
- * @property integer store_id
+ * @version June 15, 2020, 7:05 pm UTC
+ * @property \Illuminate\Database\Eloquent\Collection $articles
+ * @property string $name
+ * @property string $description
+ * @property integer $visible
  * @property int $id
- * @property int $store_id
+ * @property string $slug
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
- * @property-read int|null $products_count
- * @property-read \App\Models\Store $store
- * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DebitSlip newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DebitSlip newQuery()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\DebitSlip onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DebitSlip query()
- * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DebitSlip whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DebitSlip whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DebitSlip whereStoreId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DebitSlip whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\DebitSlip withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\DebitSlip withoutTrashed()
+ * @property-read int|null $articles_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Categories newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Categories newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Categories query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Categories whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Categories whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Categories whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Categories whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Categories whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Categories whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Categories whereVisible($value)
  */
-	class DebitSlip extends \Eloquent {}
+	class Categories extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * Class Product
+ * Class Media
  *
  * @package App\Models
- * @version January 4, 2020, 6:25 pm UTC
- * @property \Illuminate\Database\Eloquent\Collection creditSlips
- * @property \Illuminate\Database\Eloquent\Collection debitSlips
- * @property \Illuminate\Database\Eloquent\Collection stores
- * @property string name
- * @property integer height
- * @property integer width
- * @property integer length
- * @property number price
- * @property int $id
+ * @version June 12, 2020, 4:39 pm UTC
+ * @property \Illuminate\Database\Eloquent\Collection $articles
  * @property string $name
- * @property int $height
- * @property int $width
- * @property int $length
- * @property float $price
+ * @property string $title
+ * @property string $src
+ * @property string $description
+ * @property int $id
+ * @property int $media_types_id
+ * @property int $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CreditSlip[] $creditSlips
- * @property-read int|null $credit_slips_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\DebitSlip[] $debitSlips
- * @property-read int|null $debit_slips_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Store[] $stores
- * @property-read int|null $stores_count
- * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product newQuery()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Product onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product query()
- * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereHeight($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereLength($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWidth($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Product withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Product withoutTrashed()
+ * @property-read int|null $articles_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Media newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Media newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Media query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Media whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Media whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Media whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Media whereMediaTypesId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Media whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Media whereSrc($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Media whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Media whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Media whereUserId($value)
  */
-	class Product extends \Eloquent {}
+	class Media extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * Class Store
+ * Class MediaTypes
  *
  * @package App\Models
- * @version January 4, 2020, 6:30 pm UTC
- * @property \Illuminate\Database\Eloquent\Collection creditSlips
- * @property \Illuminate\Database\Eloquent\Collection debitSlips
- * @property \Illuminate\Database\Eloquent\Collection products
- * @property string name
- * @property int $id
+ * @version June 15, 2020, 7:12 pm UTC
+ * @property \Illuminate\Database\Eloquent\Collection $media
  * @property string $name
+ * @property string $description
+ * @property int $id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CreditSlip[] $creditSlips
- * @property-read int|null $credit_slips_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\DebitSlip[] $debitSlips
- * @property-read int|null $debit_slips_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
- * @property-read int|null $products_count
- * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store newQuery()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Store onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store query()
- * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Store withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Store withoutTrashed()
+ * @property-read int|null $media_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MediaTypes newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MediaTypes newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MediaTypes query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MediaTypes whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MediaTypes whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MediaTypes whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MediaTypes whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MediaTypes whereUpdatedAt($value)
  */
-	class Store extends \Eloquent {}
+	class MediaTypes extends \Eloquent {}
 }
 
-namespace App{
+namespace App\Models{
 /**
- * App\Product
+ * Class Status
  *
- * @property int $id
+ * @package App\Models
+ * @version June 11, 2020, 8:18 pm UTC
+ * @property \Illuminate\Database\Eloquent\Collection $articles
  * @property string $name
- * @property int $height
- * @property int $width
- * @property int $length
- * @property float $price
+ * @property string $description
+ * @property int $id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Product newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Product newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Product query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereHeight($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereLength($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Product wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereWidth($value)
+ * @property-read int|null $articles_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Status newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Status newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Status query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Status whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Status whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Status whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Status whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Status whereUpdatedAt($value)
  */
-	class Product extends \Eloquent {}
+	class Status extends \Eloquent {}
 }
 
 namespace App{
@@ -192,6 +167,7 @@ namespace App{
  * @property int $id
  * @property string $name
  * @property string $email
+ * @property int $is_admin
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
@@ -206,6 +182,7 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereIsAdmin($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereRememberToken($value)

@@ -3,9 +3,9 @@
 @section('content')
     <ol class="breadcrumb">
           <li class="breadcrumb-item">
-             <a href="{!! route('articles.index') !!}">Article</a>
+             <a href="{!! route('articles.index') !!}">Статья</a>
           </li>
-          <li class="breadcrumb-item active">Edit</li>
+          <li class="breadcrumb-item active">Редактировать</li>
         </ol>
     <div class="container-fluid">
          <div class="animated fadeIn">
@@ -15,7 +15,7 @@
                       <div class="card">
                           <div class="card-header">
                               <i class="fa fa-edit fa-lg"></i>
-                              <strong>Edit Article</strong>
+                              <strong>Редактировать статью</strong>
                           </div>
                           <div class="card-body">
                               {!! Form::model($article, ['route' => ['articles.update', $article->id], 'method' => 'patch']) !!}

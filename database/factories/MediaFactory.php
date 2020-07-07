@@ -30,14 +30,21 @@ $factory->state(Media::class, 'video', function ($faker) {
 
 $factory->state(Media::class, 'with_resources', function (Faker $faker) {
     $fileNameHelper = new \App\Services\Images\ImageNameHelper();
-    $mediaType = $faker->numberBetween(1, 2);
-    echo "$mediaType\n";
+    $mediaType = 1; //$faker->numberBetween(1, 2);
+    //echo "$mediaType\n";
     if ($mediaType == 1) {
         $files = [
             "fake_images/1.jpg",
             "fake_images/2.jpg",
+            "fake_images/3.jpg",
+            "fake_images/4.jpg",
+            "fake_images/5.jpg",
+            "fake_images/6.jpg",
+            "fake_images/7.jpg",
+            "fake_images/8.jpg",
         ];
         $file = \Illuminate\Support\Facades\Storage::path($faker->randomElement($files));
+        echo $file;
         $src = $fileNameHelper->generateName($file);
         $service = \Illuminate\Support\Facades\App::make(\App\Services\Images\IImageService::class);
         $service->save($file, $src);

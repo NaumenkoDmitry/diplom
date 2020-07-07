@@ -7,7 +7,7 @@
 
 <!-- Title Field -->
 <div class="form-group">
-    {!! Form::label('title', 'Title:') !!}
+    {!! Form::label('title', 'Название:') !!}
     <h1>{{ $media->title }}</h1>
 </div>
 
@@ -25,7 +25,7 @@
 
 <!-- Description Field -->
 <div class="form-group">
-    {!! Form::label('description', 'Description:') !!}
+    {!! Form::label('description', 'Описание:') !!}
     <p>{{ $media->description }}</p>
 </div>
 

@@ -3,14 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\Article;
-use App\Repositories\BaseRepository;
 
 /**
  * Class ArticleRepository
  * @package App\Repositories
  * @version June 11, 2020, 8:21 pm UTC
-*/
-
+ */
 class ArticleRepository extends BaseRepository
 {
     /**
@@ -40,5 +38,25 @@ class ArticleRepository extends BaseRepository
     public function model()
     {
         return Article::class;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function unapproved()
+    {
+        return $this->allQuery()->with(['user',"status"])->where("status_id",'=',2)->get();
+    }
+    public function findBuCategoriesAndStatus($categories,  $statusId){
+        if (!is_array($categories)){
+            $categories = [$categories];
+        }
+        $articles = Article::with(["media"])
+            ->where(["status_id"=>$statusId])
+            ->whereHas('categories', function($query) use ($categories){
+                $query->whereIn('categories.id', $categories);
+            })
+            ->get();
+        return $articles;
     }
 }

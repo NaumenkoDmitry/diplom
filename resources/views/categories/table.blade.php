@@ -2,10 +2,10 @@
     <table class="table table-striped" id="categories-table">
         <thead>
             <tr>
-                <th>Name</th>
-        <th>Description</th>
-        <th>Visible</th>
-                <th colspan="3">Action</th>
+                <th>Название</th>
+        <th>Описание</th>
+        <th>Видимость</th>
+
             </tr>
         </thead>
         <tbody>

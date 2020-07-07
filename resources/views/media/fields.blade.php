@@ -1,18 +1,18 @@
 <!-- Name Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('name', 'Name:') !!}
+    {!! Form::label('name', 'Название:') !!}
     {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Title Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('title', 'Title:') !!}
+    {!! Form::label('title', 'Титл:') !!}
     {!! Form::text('title', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Src Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('media_types_id', 'Media type:') !!}
+    {!! Form::label('media_types_id', 'Тип медиа:') !!}
     {!! Form::select('media_types_id', $mediaTypes, null, ['class' => 'form-control js-type']) !!}
 </div>
 <!-- Src Field -->
@@ -28,14 +28,14 @@
 
 <!-- Description Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('description', 'Description:') !!}
+    {!! Form::label('description', 'Описание:') !!}
     {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{{ route('media.index') }}" class="btn btn-secondary">Cancel</a>
+    {!! Form::submit('Сохранить', ['class' => 'btn btn-primary']) !!}
+    <a href="{{ route('media.index') }}" class="btn btn-secondary">Отмена</a>
 </div>
 
 @section("scripts")

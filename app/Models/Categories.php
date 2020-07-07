@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use ElForastero\Transliterate\Facade as Transliterate;
 
 /**
  * Class Categories
@@ -23,6 +24,15 @@ class Categories extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
+    protected static function boot()
+    {
+        parent::boot();
+        static::saving(function ($model) {
+            if (empty($model->slug)) {
+                $model->slug = Transliterate::slugify($model->name);
+            }
+        });
+    }
 
 
 
@@ -30,6 +40,7 @@ class Categories extends Model
 
     public $fillable = [
         'name',
+        'slug',
         'description',
         'visible'
     ];
@@ -53,6 +64,7 @@ class Categories extends Model
      */
     public static $rules = [
         'name' => 'required',
+        //'slug'=> 'required',
         'visible' => 'required'
     ];
 

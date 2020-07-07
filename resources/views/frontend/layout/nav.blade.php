@@ -2,20 +2,22 @@
     <nav class="navbar navbar-inverse" role="navigation">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar"><span class="sr-only">Toggle navigation</span> <span
+                    aria-expanded="false" aria-controls="navbar"><span class="sr-only">Переключить навигацию</span> <span
                     class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav main_nav">
-                <li class="active">
+                <li class="{{ (request()->route()->getName() == "home") ? 'active' : '' }}">
                     <a href="{{ route("home") }}">
-                        <span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span>
+                        <span class="fa fa-home desktop-home"></span><span class="mobile-show">Главная страница</span>
                     </a>
                 </li>
 
                 @foreach(\App\Models\Categories::all() as $category)
                     @if($category->visible)
-                        <li><a href="{{ route("category", ["id"=>$category->id]) }}">{{$category->name}}</a></li>
+                        <li class="{{ (request()->route("id") == $category->slug) ? 'active' : ''}}">
+                            <a   href="{{ route("category", ["id"=>$category->slug]) }}">{{$category->name}}</a>
+                        </li>
                     @endif
                 @endforeach
                 {{--                <li class="active"><a href="index.html"><span class="fa fa-home desktop-home"></span><span--}}

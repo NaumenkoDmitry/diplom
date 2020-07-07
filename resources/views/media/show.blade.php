@@ -3,7 +3,7 @@
 @section('content')
      <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('media.index') }}">Media</a>
+                <a href="{{ route('media.index') }}">Медиа</a>
             </li>
             <li class="breadcrumb-item active">Detail</li>
      </ol>
@@ -14,8 +14,8 @@
                      <div class="col-lg-12">
                          <div class="card">
                              <div class="card-header">
-                                 <strong>Details</strong>
-                                  <a href="{{ route('media.index') }}" class="btn btn-light">Back</a>
+                                 <strong>Подробности</strong>
+                                  <a href="{{ route('media.index') }}" class="btn btn-light">Назад</a>
                              </div>
                              <div class="card-body">
                                  @include('media.show_fields')

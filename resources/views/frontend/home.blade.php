@@ -59,10 +59,6 @@
                         <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
                         <ul class="latest_postnav" style="height: 192px; overflow: hidden;">
 
-
-
-
-
                             <li style="margin-top: -32.377px;">
                                 <div class="media"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
                                     <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "802adc26e0f19a7707f35ee22630cbc6",
+    "content-hash": "f1636f2ed338bcdae10c33dfe1115955",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -541,6 +541,65 @@
                 "validator"
             ],
             "time": "2020-02-13T22:36:52+00:00"
+        },
+        {
+            "name": "elforastero/transliterate",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ElForastero/Transliterate.git",
+                "reference": "3e9d858387af2e311dd08ef6348d86025b395072"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ElForastero/Transliterate/zipball/3e9d858387af2e311dd08ef6348d86025b395072",
+                "reference": "3e9d858387af2e311dd08ef6348d86025b395072",
+                "shasum": ""
+            },
+            "require": {
+                "ext-intl": "*",
+                "illuminate/support": "~6",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "brainmaestro/composer-git-hooks": "^2.8",
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "orchestra/testbench": "^4.4",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ElForastero\\Transliterate\\ServiceProvider"
+                    ],
+                    "aliases": {
+                        "Transliterate": "ElForastero\\Transliterate\\Facade"
+                    }
+                },
+                "hooks": {
+                    "pre-commit": [
+                        "php-cs-fixer fix ."
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ElForastero\\Transliterate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eugene Dzhumak",
+                    "email": "elforastero@ya.ru"
+                }
+            ],
+            "description": "Transliteration package for laravel 6",
+            "time": "2020-01-02T11:04:58+00:00"
         },
         {
             "name": "fideloper/proxy",
@@ -3602,6 +3661,63 @@
                 "dump"
             ],
             "time": "2020-05-30T20:06:45+00:00"
+        },
+        {
+            "name": "tightenco/ziggy",
+            "version": "0.9.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tightenco/ziggy.git",
+                "reference": "82ea6ec6cb6ab3545b0245310b2a424316fe48d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tightenco/ziggy/zipball/82ea6ec6cb6ab3545b0245310b2a424316fe48d8",
+                "reference": "82ea6ec6cb6ab3545b0245310b2a424316fe48d8",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": ">=5.4@dev"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Tightenco\\Ziggy\\ZiggyServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tightenco\\Ziggy\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Coulbourne",
+                    "email": "daniel@tighten.co"
+                },
+                {
+                    "name": "Jake Bathman",
+                    "email": "jake@tighten.co"
+                }
+            ],
+            "description": "Generates a Blade directive exporting all of your named Laravel routes. Also provides a nice route() helper function in JavaScript.",
+            "homepage": "https://github.com/tightenco/ziggy",
+            "keywords": [
+                "Ziggy",
+                "javascript",
+                "laravel",
+                "routes"
+            ],
+            "time": "2020-06-05T14:42:41+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

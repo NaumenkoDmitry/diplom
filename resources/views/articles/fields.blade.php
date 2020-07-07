@@ -1,45 +1,50 @@
 
 <!-- Title Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('title', 'Title:') !!}
+<div class="form-group col-sm-6" data-toggle="tooltip" data-placement="bottom" title="Название вашей статьи">
+    {!! Form::label('title', 'Назва статьи:') !!}
     {!! Form::text('title', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Short Text Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('short_text', 'Short Texts:') !!}
+<div class="form-group col-sm-6" data-toggle="tooltip" data-placement="bottom" title="Краткое описание статьи">
+    {!! Form::label('short_text', 'Описание:') !!}
     {!! Form::text('short_text', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Text Field -->
-<div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('text', 'Text:') !!}
+<div class="form-group col-sm-12 col-lg-12" data-toggle="tooltip" data-placement="bottom" title="Текст статьи">
+    {!! Form::label('text', 'Текст:') !!}
     {!! Form::textarea('text', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Categories Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('article_category', 'Categories:') !!}
+<div class="form-group col-sm-6" data-toggle="tooltip" data-placement="bottom" title="Выбор категории">
+    {!! Form::label('article_category', 'Категории:') !!}
     {!! Form::select('article_category', \App\Models\Categories::all()->pluck('name', 'id'), null, ['class' => 'form-control']) !!}
 </div>
 
 
 <!-- Status Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('status_id', 'Status:') !!}
+<div class="form-group col-sm-6" data-toggle="tooltip" data-placement="bottom" title="Выбо статуса">
+    @if(Auth::user()->isAdmin())
+    {!! Form::label('status_id', 'Статус:') !!}
     {!! Form::select('status_id', \App\Models\Status::all()->pluck('name', 'id'), null, ['class' => 'form-control']) !!}
+    @else
+        {!! Form::hidden('status_id', 2, null, ['class' => 'form-control']) !!}
+    @endif
+
 </div>
 
 
 <!-- User Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('user_id', 'User:') !!}
+<div class="form-group col-sm-6" data-toggle="tooltip" data-placement="bottom" title="Пользователь">
+    {!! Form::label('user_id', 'Пользователь:') !!}
     {!! Form::select('user_id', \App\User::all()->pluck('name', 'id'), Auth::user()->id, ['class' => 'form-control']) !!}
 </div>
 
 
 
-<div class="nav-tabs-boxed nav-tabs-boxed-top-right">
+<div class="nav-tabs-boxed nav-tabs-boxed-top-right" data-toggle="tooltip" data-placement="bottom" title="Выбор мадиа">
     <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#img" role="tab" aria-controls="home" aria-selected="true">Img</a></li>
         <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#video" role="tab" aria-controls="profile" aria-selected="false">Video</a></li>
@@ -71,15 +76,13 @@
     </div>
 </div>
 
-<div class="card-body">
-    <button class="btn btn-info mb-1" type="button" data-toggle="modal" data-target="#infoModal">Info modal</button>
-</div>
+
 
 
     <!-- Submit Field -->
 <div class="form-group col-sm-12">
-        {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-        <a href="{{ route('articles.index') }}" class="btn btn-secondary">Cancel</a>
+        {!! Form::submit('Сохранить', ['class' => 'btn btn-primary']) !!}
+        <a href="{{ route('articles.index') }}" class="btn btn-secondary">Отмена</a>
 </div>
 
 
@@ -89,7 +92,10 @@
 @section("scripts")
 <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
     <script>
-
-        CKEDITOR.replace( 'text' );
+        CKEDITOR.replace( 'text' ,{
+            filebrowserBrowseUrl : '/filemanager/dialog.php?type=2&editor=ckeditor&fldr=',
+            filebrowserUploadUrl : '/filemanager/dialog.php?type=2&editor=ckeditor&fldr=',
+            filebrowserImageBrowseUrl : '/filemanager/dialog.php?type=1&editor=ckeditor&fldr='
+        });
     </script>
 @endsection

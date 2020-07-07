@@ -2,12 +2,12 @@
     <table class="table table-striped" id="media-table">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Title</th>
+            <th>Имя</th>
+            <th>Название</th>
             <th>Src</th>
-            <th>Description</th>
-            <th>User</th>
-            <th colspan="3">Action</th>
+            <th>Описание</th>
+            <th>Пользователь</th>
+
         </tr>
         </thead>
         <tbody>
