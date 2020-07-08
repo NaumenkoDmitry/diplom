@@ -2,7 +2,7 @@
 
 @section('content')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">Statuses</li>
+        <li class="breadcrumb-item">Статусы</li>
     </ol>
     <div class="container-fluid">
         <div class="animated fadeIn">
@@ -12,13 +12,13 @@
                      <div class="card">
                          <div class="card-header">
                              <i class="fa fa-align-justify"></i>
-                             Statuses
+                             Статусы
                              <a class="pull-right" href="{{ route('statuses.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
                          </div>
                          <div class="card-body">
                              @include('statuses.table')
                               <div class="pull-right mr-3">
-                                     
+
         @include('coreui-templates::common.paginate', ['records' => $statuses])
 
                               </div>

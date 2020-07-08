@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
+use App\User;
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 /**
  * Class Article
@@ -27,10 +28,28 @@ class Article extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::creating(function ($user) {
+            if (empty($user->slug)) {
+                $user->slug = \Transliterate::slugify($user->title);
+            }
+        });
+        static::updating(function ($user) {
+            if (empty($user->slug)) {
+                $user->slug = \Transliterate::slugify($user->title);
+            }
+        });
+    }
     public $fillable = [
         'title',
         'short_text',
+        'slug',
         'text',
         'status_id',
         'user_id'
@@ -57,6 +76,7 @@ class Article extends Model
      */
     public static $rules = [
         'title' => 'required',
+        //'slug'=>'required',
         'status_id' => 'required',
         'user_id' => 'required'
     ];
@@ -74,7 +94,7 @@ class Article extends Model
      **/
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**
@@ -82,7 +102,7 @@ class Article extends Model
      **/
     public function categories()
     {
-        return $this->belongsToMany(\App\Models\Category::class, 'article_category');
+        return $this->belongsToMany(\App\Models\Categories::class, 'article_category','article_id', "category_id");
     }
 
     /**

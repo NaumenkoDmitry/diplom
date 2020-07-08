@@ -1,30 +1,10 @@
 <!-- Title Field -->
 <div class="form-group">
-    {!! Form::label('title', 'Title:') !!}
-    <p>{{ $article->title }}</p>
+    <h1 class="mb-3">{{ $article->title }}</h1>
+    <p>{{ $article->created_at->format("d.m.Y")}} |<b> {{ $article->user->name }} </b>| <i>{{ $article->status->name }}</i></p>
+    <div class="bg-light theme-color rounded pb-2 pt-2 pl-2 pr-2 mt-3 mb-3" >{!! $article->short_text !!}</div>
+    <p>{!! $article->text !!}</p>
 </div>
 
-<!-- Short Text Field -->
-<div class="form-group">
-    {!! Form::label('short_text', 'Short Text:') !!}
-    <p>{{ $article->short_text }}</p>
-</div>
 
-<!-- Text Field -->
-<div class="form-group">
-    {!! Form::label('text', 'Text:') !!}
-    <p>{{ $article->text }}</p>
-</div>
-
-<!-- Status Id Field -->
-<div class="form-group">
-    {!! Form::label('status_id', 'Status Id:') !!}
-    <p>{{ $article->status_id }}</p>
-</div>
-
-<!-- User Id Field -->
-<div class="form-group">
-    {!! Form::label('user_id', 'User Id:') !!}
-    <p>{{ $article->user_id }}</p>
-</div>
 

@@ -12,17 +12,20 @@ class CategoriesSeeder extends Seeder
     public function run()
     {
         $data = [[
-            'name' => "Опубликован",
-            'description' => "Материал разрешен для публикации"
+            'name' => "Спорт",
+            'slug'=>"sport",
+            'description' => "Категория спорт"
         ], [
-            'name' => "На рассмотрении",
-            'description' => "Материал находится на  рассмторении"
+            'name' => "Музыка",
+            'slug'=>"music",
+            'description' => "Категория музыки"
         ], [
-            'name' => "Отключен",
-            'description' => "Материал снят с публикации"
+            'name' => "Искусство",
+            'slug'=>"culture",
+            'description' => "Категория исскуства"
         ]];
         collect($data)->each(function ($item) {
-            DB::table('categories')->insert($item);
+            (new \App\Models\Categories($item))->save();
         });
     }
 }

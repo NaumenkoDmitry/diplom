@@ -18,6 +18,8 @@ abstract class BaseRepository
      */
     protected $app;
 
+    protected $with = [];
+
     /**
      * @param Application $app
      *
@@ -75,6 +77,10 @@ abstract class BaseRepository
         return $query->paginate($perPage, $columns);
     }
 
+    public function with(array $with){
+        $this->with = $with;
+    }
+
     /**
      * Build a query for retrieving all records.
      *
@@ -87,6 +93,9 @@ abstract class BaseRepository
     {
         $query = $this->model->newQuery();
 
+        if (count($this->with)){
+            $query->with($this->with);
+        }
         if (count($search)) {
             foreach($search as $key => $value) {
                 if (in_array($key, $this->getFieldsSearchable())) {

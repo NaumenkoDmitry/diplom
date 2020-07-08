@@ -1,0 +1,17 @@
+
+.image-input {
+    &__label {
+        img {
+            opacity: 0.3;
+            cursor: pointer;
+        }
+    }
+    &__input {
+         visibility: hidden;
+    }
+    &__input:checked + .image-input__label>img{
+
+        opacity:1;
+    }
+
+}

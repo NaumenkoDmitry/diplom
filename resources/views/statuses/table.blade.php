@@ -2,9 +2,9 @@
     <table class="table table-striped" id="statuses-table">
         <thead>
             <tr>
-                <th>Name</th>
-        <th>Description</th>
-                <th colspan="3">Action</th>
+                <th>Название</th>
+        <th>Описание</th>
+
             </tr>
         </thead>
         <tbody>

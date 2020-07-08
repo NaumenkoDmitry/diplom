@@ -18,5 +18,9 @@
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
         "vue-template-compiler": "^2.6.11"
+    },
+    "dependencies": {
+        "@coreui/coreui": "^3.2.2",
+        "lightbox2": "^2.11.1"
     }
 }

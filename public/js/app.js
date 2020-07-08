@@ -19283,6 +19283,8 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./dashboard */ "./resources/js/dashboard.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -19300,7 +19302,15 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
  */
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common = {
+  'X-Requested-With': 'XMLHttpRequest',
+  'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+};
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -19314,6 +19324,44 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/dashboard.js":
+/*!***********************************!*\
+  !*** ./resources/js/dashboard.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {
+  $(".js-approve").click(function () {
+    var _this = this;
+
+    var id = $(this).data("id");
+    axios.put(route("articles.set-status", {
+      id: id
+    }), {
+      status_id: 1
+    }).then(function () {
+      $(_this).closest("tr").find(".js-status").text("Опубликованно").removeClass("badge-warning").removeClass("badge-danger").addClass("badge-success");
+    });
+    return false;
+  });
+  $(".js-decline").click(function () {
+    var _this2 = this;
+
+    var id = $(this).data("id");
+    axios.put(route("articles.set-status", {
+      id: id
+    }), {
+      status_id: 3
+    }).then(function () {
+      $(_this2).closest("tr").find(".js-status").text("Снято с публикации").removeClass("badge-success").removeClass("badge-warning").addClass("badge-danger");
+    });
+    return false;
+  });
+});
 
 /***/ }),
 

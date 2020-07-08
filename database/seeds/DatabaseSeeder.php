@@ -16,7 +16,9 @@ class DatabaseSeeder extends Seeder
             CategoriesSeeder::class,
             MediaTypesSeeder::class,
             StatusesSeeder::class,
+            MediasSeeder::class,
             ArticlesTableSeeder::class,
+
         ]);
 
     }

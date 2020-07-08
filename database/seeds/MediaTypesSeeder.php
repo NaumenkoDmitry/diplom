@@ -12,14 +12,14 @@ class MediaTypesSeeder extends Seeder
     public function run()
     {
         $data = [[
-            'name' => "Опубликован",
-            'description' => "Материал разрешен для публикации"
+            'name' => "Img",
+            'description' => "Фотографии"
         ], [
-            'name' => "На рассмотрении",
-            'description' => "Материал находится на  рассмторении"
+            'name' => "Video",
+            'description' => "Видеоматериал"
         ], [
-            'name' => "Отключен",
-            'description' => "Материал снят с публикации"
+            'name' => "Audio",
+            'description' => "Аудиоматериал"
         ]];
         collect($data)->each(function ($item) {
             DB::table('media_types')->insert($item);
