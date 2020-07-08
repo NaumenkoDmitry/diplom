@@ -31,6 +31,7 @@
                 </figure>
             </article>
         @endforeach
+        <div class="addthis_inline_share_toolbox"></div>
     </div>
 @endsection
 @section("styles")

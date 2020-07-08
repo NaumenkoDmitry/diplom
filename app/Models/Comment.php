@@ -8,21 +8,32 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Comment
  * @package App\Models
- * @property \Illuminate\Database\Eloquent\Collection $comment
+ * @version July 8, 2020, 2:40 pm UTC
+ *
+ * @property string $puid
+ * @property string $title
  * @property string $text
- * @property integer $user_id
+ * @property boolean $comment_approved
+ * @property string $user_name
+ * @property string $user_email
  */
 class Comment extends Model
 {
-    public $table = 'articles';
+
+    public $table = 'comments';
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
 
     public $fillable = [
-        'user_id',
-        'body'
+        'uid',
+        'puid',
+        'title',
+        'text',
+        'comment_approved',
+        'user_name',
+        'user_email'
     ];
 
     /**
@@ -31,9 +42,13 @@ class Comment extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'user_id' => 'integer',
-        'body' => 'string'
+        'uid' => 'string',
+        'puid' => 'string',
+        'title' => 'string',
+        'text' => 'string',
+        'comment_approved' => 'boolean',
+        'user_name' => 'string',
+        'user_email' => 'string'
     ];
 
     /**
@@ -42,13 +57,15 @@ class Comment extends Model
      * @var array
      */
     public static $rules = [
-        'user_id' => 'required'
+        'title' => 'required',
+        'text'=>'required',
+        'user_name' => 'required',
+        'user_email' => 'required'
     ];
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
+
+    public function comments(){
+        return $this->hasMany(Comment::class,'puid', 'uid');
     }
+
+
 }

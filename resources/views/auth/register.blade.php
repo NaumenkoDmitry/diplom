@@ -1,5 +1,4 @@
-@extends('frontend.layout.app')
-@section("content")
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,4 +95,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.4.0/perfect-scrollbar.js"></script>
 </body>
 </html>
-@endsection
+

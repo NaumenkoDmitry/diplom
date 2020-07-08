@@ -69,6 +69,7 @@
 <script src="/assets/js/jquery.fancybox.pack.js"></script>
 <script src="/assets/js/custom.js?{{time()}}"></script>
 @yield('scripts')
-
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f05e7c975e107ee"></script>
 </body>
 </html>
