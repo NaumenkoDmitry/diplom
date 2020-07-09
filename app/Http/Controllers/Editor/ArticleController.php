@@ -35,8 +35,9 @@ class ArticleController extends AppBaseController
         $this->articleRepository->with(['user', 'status', 'categories']);
         if ($request->has("filter")) {
             $filter = $request->filter;
-            $articles = $this->articleRepository->allQuery()->orWhere('title', 'like', "%$filter%")->paginate(25);
-
+            $articles = $this->articleRepository->allQuery()->where('title', 'like', "%$filter%")
+                ->orWhere('short_text','like',"%$filter%")->orWhere('text','like',"%$filter%")->paginate(25);
+            //$articles = $this->articleRepository->allQuery()->orWhere('short_text', 'like', "%$filter%")->paginate(25);
         } else {
             $articles = $this->articleRepository->paginate(25);
         }

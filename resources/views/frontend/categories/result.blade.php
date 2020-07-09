@@ -9,16 +9,12 @@
                 <figure class="bsbig_fig ">
 
                     @if ($article->media->first() && $article->media->first()->media_types_id == 1)
-                        <span><i class="fa fa-calendar"></i>{{$article->created_at->format("d.m.Y h:i")}}</span>
                         <a href="{{route("article",["id"=>$article->slug])}}" class="featured_img">
                             <img class="featured_img"
                                  src="{{ \Illuminate\Support\Facades\Storage::url("images/middle/".$article->media->first()->src) }}"/>
                             <span class="overlay"></span>
                         </a>
                     @else
-                        {{--                        <iframe type="text/html" width="100%" height="227"--}}
-                        {{--                                src="https://www.youtube.com/embed/{{$media->src}}"--}}
-                        {{--                                frameborder="0" allowfullscreen></iframe>--}}
 
                         <a href="{{route("article",["id"=>$article->slug])}}" class="featured_img">
                             <img alt="" src="/images/featured_img1.jpg">
@@ -29,7 +25,6 @@
                         <a href="{{route("article",["id"=>$article->slug])}}">{{$article->title}}</a>
                     </figcaption>
                     <p>{{$article->short_text}}...</p>
-
                 </figure>
             </article>
         @endforeach

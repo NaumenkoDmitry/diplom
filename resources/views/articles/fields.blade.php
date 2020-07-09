@@ -4,7 +4,10 @@
     {!! Form::label('title', 'Назва статьи:') !!}
     {!! Form::text('title', null, ['class' => 'form-control']) !!}
 </div>
-
+<div class="form-group col-sm-6" data-toggle="tooltip" data-placement="bottom" title="slug">
+    {!! Form::label('title', 'slug:') !!}
+    {!! Form::text('slug', null, ['class' => 'form-control']) !!}
+</div>
 <!-- Short Text Field -->
 <div class="form-group col-sm-6" data-toggle="tooltip" data-placement="bottom" title="Краткое описание статьи">
     {!! Form::label('short_text', 'Описание:') !!}

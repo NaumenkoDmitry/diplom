@@ -24,7 +24,7 @@ class Categories extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-    protected static function boot()
+    protected static function booted()
     {
         parent::boot();
         static::saving(function ($model) {

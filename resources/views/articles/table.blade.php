@@ -3,11 +3,12 @@
         <thead>
             <tr>
                 <th>Название</th>
-        <th>Краткое описание</th>
-        <th>Дата</th>
-          <th>Категория </th>
-        <th>Статус </th>
-        <th>Пользователь </th>
+                <th>Краткое описание</th>
+                <th>Дата</th>
+                <th>Категория </th>
+                <th>Статус </th>
+                <th>slug </th>
+                <th>Пользователь </th>
 
             </tr>
         </thead>
@@ -15,10 +16,12 @@
         @foreach($articles as $article)
             <tr>
                 <td>{{ $article->title }}</td>
+
             <td>{!! strip_tags($article->short_text) !!}</td>
-                <<td>{{$article->created_at->format("d.m.Y h:i")}}</td>
+                <td>{{$article->created_at->format("d.m.Y h:i")}}</td>
                 <td>{{ $article->categoriess }}</td>
             <td>{{ $article->status->name }}</td>
+                <td>{{ $article->slug }}</td>
             <td>{{ $article->user->name }}</td>
                 <td>
 

@@ -16,6 +16,7 @@ Route::group(['namespace'=>"\App\Http\Controllers\Frontend"], function(){
     Route::get("/", "HomeController@index")->name("home");
     Route::get("/category/{id}", "HomeController@category")->name("category");
     Route::get("/article/{id}", "HomeController@article")->name("article");
+    Route::get("/categories/{id}", "HomeController@article")->name("article");
 
 });
 Route::post('/comments', "CommentsController@store")->name('comments.store');
@@ -31,6 +32,8 @@ Route::group(['namespace'=>"\App\Http\Controllers\Editor", "prefix"=>"editor", '
     Route::resource('articles', 'ArticleController');
     Route::put("article/{id}/set-status", "ArticleController@setStatus")->name("articles.set-status");
     Route::resource('media', 'MediaController');
+
+//    Route::resource('frontend.categories.result', 'ArticleController');
 });
 
 

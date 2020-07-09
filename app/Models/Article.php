@@ -45,6 +45,7 @@ class Article extends Model
                 $user->slug = \Transliterate::slugify($user->title);
             }
         });
+
     }
     public $fillable = [
         'title',
