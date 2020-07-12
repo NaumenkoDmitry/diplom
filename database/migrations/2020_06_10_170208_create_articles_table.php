@@ -22,6 +22,7 @@ class CreateArticlesTable extends Migration
             $table->unsignedBigInteger('status_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('comment_id')->nullable();
+            $table->integer('view_count')->nullable();;
             $table->timestamps();
             $table->foreign('status_id')->references('id')->on('statuses');
             $table->foreign('user_id')->references('id')->on('users');

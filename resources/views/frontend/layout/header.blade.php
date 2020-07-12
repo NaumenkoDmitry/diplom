@@ -4,7 +4,9 @@
             <div class="header_top">
                 <div class="header_top_left">
                     <ul class="top_nav">
-                        <li><a href="{{ route("home") }}">{{__("frontend.home")}}</a></li>
+                        <li><a class="{{ (request()->route()->getName() == "home") ? 'active' : ''}}"  href="{{ route("home") }}">{{__("frontend.home")}}</a></li>
+                        <li><a class = "{{ Request::is('contacts*') ? 'active' : '' }}" href="{{ route("contacts") }}">Обратная связь</a></li>
+
                         @auth
                             <li>
                                 <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -25,7 +27,7 @@
                     </li>
                 </div>
                 <div class="header_top_right">
-                    <p>{{ date("d.m.Y ") }}</p>
+                    @include("frontend.layout.search-form")
                 </div>
             </div>
         </div>

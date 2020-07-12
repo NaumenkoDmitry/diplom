@@ -11,21 +11,27 @@
 |
 */
 
+Auth::routes();
 
 Route::group(['namespace'=>"\App\Http\Controllers\Frontend"], function(){
     Route::get("/", "HomeController@index")->name("home");
     Route::get("/category/{id}", "HomeController@category")->name("category");
     Route::get("/article/{id}", "HomeController@article")->name("article");
+    Route::get("/categories/{id}", "HomeController@article")->name("article");
+    Route::get("/contacts", "HomeController@contacts")->name("contacts");
+    Route::get("/search", "HomeController@search")->name("articles.search");
+
+    Route::post("/contacts/create", "FeedbackController@store")->name("contacts.public.store");
+    Route::get("/games", "GamesController@index")->name("games");
 
 });
-Route::post('/comments', "CommentsController@store")->name('comments.store');
-Route::get('/comments/{uid}', "CommentsController@show")->name('comments.show');
 
 Route::group(['namespace'=>"\App\Http\Controllers\Admin", "prefix"=>"admin", 'middleware'=>["auth","admin"]], function(){
     Route::get("/", "DashboardController@index")->name("admin.dashboard");
     Route::resource('categories', 'CategoriesController');
     Route::resource('mediaTypes', 'MediaTypesController');
     Route::resource('statuses', 'StatusController');
+    Route::resource('feedback', 'FeedbackController');
 });
 Route::group(['namespace'=>"\App\Http\Controllers\Editor", "prefix"=>"editor", 'middleware'=>["auth"]], function(){
     Route::resource('articles', 'ArticleController');
@@ -33,8 +39,6 @@ Route::group(['namespace'=>"\App\Http\Controllers\Editor", "prefix"=>"editor", '
     Route::resource('media', 'MediaController');
 });
 
-
-Auth::routes();
-
 Route::get('/home', 'HomeController@index');
+
 

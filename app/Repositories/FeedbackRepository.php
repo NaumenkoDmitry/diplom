@@ -2,25 +2,26 @@
 
 namespace App\Repositories;
 
-use App\Models\Media;
+use App\Models\Feedback;
 use App\Repositories\BaseRepository;
 
 /**
- * Class MediaRepository
+ * Class FeedbackRepository
  * @package App\Repositories
- * @version June 12, 2020, 4:39 pm UTC
+ * @version July 10, 2020, 7:38 pm UTC
 */
 
-class MediaRepository extends BaseRepository
+class FeedbackRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
+        'message',
         'name',
-        'title',
-        'src',
-        'description'
+        'email',
+        'text',
+        'status'
     ];
 
     /**
@@ -32,16 +33,19 @@ class MediaRepository extends BaseRepository
     {
         return $this->fieldSearchable;
     }
-
+    public function feedbackk()
+    {
+//       return $this->allQuery();
+    }
     /**
      * Configure the Model
      **/
     public function model()
     {
-        return Media::class;
+        return Feedback::class;
     }
 
-    public function getUserMedia($userId){
-        return $this->allQuery()->with(["user"])->where(["user_id"=>$userId])->get();
+    public function getUnProcessed(){
+        return  Feedback::where("status","=", 0)->get();
     }
 }

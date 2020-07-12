@@ -1,6 +1,7 @@
 @extends('frontend.layout.app')
 
 @section('content')
+    <h1 style="margin-bottom: 25px;">{{$searchTitle}}</h1>
     <div class="row">
         @foreach($articles as $article)
             <article class="col-lg-4 article-thumb">
@@ -32,8 +33,17 @@
                 </figure>
             </article>
         @endforeach
-        <div class="addthis_inline_share_toolbox"></div>
+
     </div>
+    <div style="padding: 15px;">
+        {{ $articles->appends(["filter"=>request()->get("filter")])->render() }}
+    </div>
+    <div class="row" style="margin-bottom: 25px;">
+        <div class="col-lg-12">
+            <div class="addthis_inline_share_toolbox"></div>
+        </div>
+    </div>
+
 @endsection
 @section("styles")
     <style>
@@ -43,6 +53,7 @@
             overflow: hidden;
             margin-bottom: 20px;
         }
+
         .article-thumb a.featured_img {
             height: 227px;
             overflow: hidden;
