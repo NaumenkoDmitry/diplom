@@ -33,19 +33,14 @@ class Article extends Model
      *
      * @return void
      */
-    protected static function booted()
+    protected static function boot()
     {
+        parent::boot();
         static::creating(function ($user) {
             if (empty($user->slug)) {
                 $user->slug = \Transliterate::slugify($user->title);
             }
         });
-        static::updating(function ($user) {
-            if (empty($user->slug)) {
-                $user->slug = \Transliterate::slugify($user->title);
-            }
-        });
-
     }
     public $fillable = [
         'title',
@@ -53,7 +48,8 @@ class Article extends Model
         'slug',
         'text',
         'status_id',
-        'user_id'
+        'user_id',
+        'view_count',
     ];
 
     /**
@@ -67,7 +63,8 @@ class Article extends Model
         'short_text' => 'string',
         'text' => 'string',
         'status_id' => 'integer',
-        'user_id' => 'integer'
+        'user_id' => 'integer',
+        'view_count' => 'integer',
     ];
 
     /**

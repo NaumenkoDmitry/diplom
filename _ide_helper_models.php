@@ -28,8 +28,10 @@ namespace App\Models{
  * @property int $id
  * @property string $slug
  * @property int|null $comment_id
+ * @property int|null $view_count
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read int|null $categories_count
  * @property-read int|null $media_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article newQuery()
@@ -44,6 +46,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article whereViewCount($value)
  */
 	class Article extends \Eloquent {}
 }
@@ -75,6 +78,39 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Categories whereVisible($value)
  */
 	class Categories extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * Class Comment
+ *
+ * @package App\Models
+ * @version July 8, 2020, 2:40 pm UTC
+ * @property string $puid
+ * @property string $title
+ * @property string $text
+ * @property boolean $comment_approved
+ * @property string $user_name
+ * @property string $user_email
+ * @property string $uid
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
+ * @property-read int|null $comments_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereCommentApproved($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment wherePuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereUid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereUserEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereUserName($value)
+ */
+	class Comment extends \Eloquent {}
 }
 
 namespace App\Models{

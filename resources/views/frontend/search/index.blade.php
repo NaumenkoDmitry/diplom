@@ -1,20 +1,24 @@
 @extends('frontend.layout.app')
 
 @section('content')
+    <h1 style="margin-bottom: 25px;">{{$searchTitle}}</h1>
     <div class="row">
-        @include('frontend.categories.search-form')
         @foreach($articles as $article)
             <article class="col-lg-4 article-thumb">
 
                 <figure class="bsbig_fig ">
 
                     @if ($article->media->first() && $article->media->first()->media_types_id == 1)
+                        <span><i class="fa fa-calendar"></i>{{$article->created_at->format("d.m.Y ")}}</span>
                         <a href="{{route("article",["id"=>$article->slug])}}" class="featured_img">
                             <img class="featured_img"
                                  src="{{ \Illuminate\Support\Facades\Storage::url("images/middle/".$article->media->first()->src) }}"/>
                             <span class="overlay"></span>
                         </a>
                     @else
+                        {{--                        <iframe type="text/html" width="100%" height="227"--}}
+                        {{--                                src="https://www.youtube.com/embed/{{$media->src}}"--}}
+                        {{--                                frameborder="0" allowfullscreen></iframe>--}}
 
                         <a href="{{route("article",["id"=>$article->slug])}}" class="featured_img">
                             <img alt="" src="/images/featured_img1.jpg">
@@ -25,11 +29,21 @@
                         <a href="{{route("article",["id"=>$article->slug])}}">{{$article->title}}</a>
                     </figcaption>
                     <p>{{$article->short_text}}...</p>
+
                 </figure>
             </article>
         @endforeach
-        <div class="addthis_inline_share_toolbox"></div>
+
     </div>
+    <div style="padding: 15px;">
+        {{ $articles->appends(["filter"=>request()->get("filter")])->render() }}
+    </div>
+    <div class="row" style="margin-bottom: 25px;">
+        <div class="col-lg-12">
+            <div class="addthis_inline_share_toolbox"></div>
+        </div>
+    </div>
+
 @endsection
 @section("styles")
     <style>
@@ -39,11 +53,12 @@
             overflow: hidden;
             margin-bottom: 20px;
         }
+
         .article-thumb a.featured_img {
             height: 227px;
             overflow: hidden;
         }
 
-    </style
+    </style>
 @endsection
 

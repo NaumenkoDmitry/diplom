@@ -47,6 +47,7 @@ class ArticleRepository extends BaseRepository
     {
         return $this->allQuery()->with(['user',"status"])->where("status_id",'=',2)->get();
     }
+
     public function findBuCategoriesAndStatus($categories,  $statusId){
         if (!is_array($categories)){
             $categories = [$categories];

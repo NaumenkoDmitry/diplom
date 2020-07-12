@@ -37,7 +37,7 @@ class MediaController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $media = $this->mediaRepository->all();
+        $media = $this->mediaRepository->getUserMedia($request->user()->id);
 
         return view('media.index')
             ->with('media', $media);

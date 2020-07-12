@@ -2,14 +2,13 @@
 
 @section('content')
     <div class="row">
-        @include('frontend.categories.search-form')
         @foreach($articles as $article)
             <article class="col-lg-4 article-thumb">
 
                 <figure class="bsbig_fig ">
 
                     @if ($article->media->first() && $article->media->first()->media_types_id == 1)
-                        <span><i class="fa fa-calendar"></i>{{$article->created_at->format("d.m.Y h:i")}}</span>
+                        <span><i class="fa fa-calendar"></i>{{$article->created_at->format("d.m.Y ")}}</span>
                         <a href="{{route("article",["id"=>$article->slug])}}" class="featured_img">
                             <img class="featured_img"
                                  src="{{ \Illuminate\Support\Facades\Storage::url("images/middle/".$article->media->first()->src) }}"/>
@@ -49,6 +48,6 @@
             overflow: hidden;
         }
 
-    </style
+    </style>
 @endsection
 

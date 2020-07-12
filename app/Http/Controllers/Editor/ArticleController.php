@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Editor;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
+use App\Models\Article;
 use App\Repositories\ArticleRepository;
 use Flash;
 use Illuminate\Http\JsonResponse;
@@ -35,11 +36,15 @@ class ArticleController extends AppBaseController
         $this->articleRepository->with(['user', 'status', 'categories']);
         if ($request->has("filter")) {
             $filter = $request->filter;
-            $articles = $this->articleRepository->allQuery()->where('title', 'like', "%$filter%")
-                ->orWhere('short_text','like',"%$filter%")->orWhere('text','like',"%$filter%")->paginate(25);
-            //$articles = $this->articleRepository->allQuery()->orWhere('short_text', 'like', "%$filter%")->paginate(25);
+            $articles = $this->articleRepository
+                ->allQuery()
+                ->where('title', 'like', "%$filter%")
+                ->orWhere('short_text', 'like', "%$filter%")
+                ->orderBy("created_at")
+                ->paginate(25);
+
         } else {
-            $articles = $this->articleRepository->paginate(25);
+            $articles = $this->articleRepository->allQuery()->orderByDesc("created_at")->paginate(25);
         }
 
         return view('articles.index')
@@ -68,6 +73,8 @@ class ArticleController extends AppBaseController
         $input = $request->all();
 
         $article = $this->articleRepository->create($input);
+
+        $article->categories()->sync($request->get("categories", []));
 
         Flash::success('Article saved successfully.');
 
@@ -135,6 +142,7 @@ class ArticleController extends AppBaseController
         $mediaIds = $request->media;
         $article = $this->articleRepository->update($request->all(), $id);
         $article->media()->sync($mediaIds);
+        $article->categories()->sync($request->get("categories", []));
         Flash::success('Article updated successfully.');
 
         return redirect(route('articles.index'));
@@ -178,6 +186,6 @@ class ArticleController extends AppBaseController
         abort_if(empty($article), 404);
         $article->status_id = $request->status_id;
         $article->save();
-        return  JsonResponse::create("ok");
+        return JsonResponse::create("ok");
     }
 }

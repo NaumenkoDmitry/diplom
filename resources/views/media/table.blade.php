@@ -7,7 +7,7 @@
             <th>Src</th>
             <th>Описание</th>
             <th>Пользователь</th>
-
+            <th>Действия</th>
         </tr>
         </thead>
         <tbody>
@@ -25,7 +25,7 @@
                     @endif
                 </td>
                 <td>{{ $media->description }}</td>
-                <td>{{ $media->user_id }}</td>
+                <td>{{ $media->user->name }}</td>
                 <td>
                     {!! Form::open(['route' => ['media.destroy', $media->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

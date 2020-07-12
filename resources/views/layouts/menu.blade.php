@@ -23,6 +23,12 @@
             <span>Типы ресурсов</span>
         </a>
     </li>
+    <li class="nav-item {{ Request::is('feedback*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('feedback.index') }}">
+            <i class="nav-icon icon-cursor"></i>
+            <span>Feedback</span>
+        </a>
+    </li>
 @endif
 <li class="nav-item {{ Request::is('articles*') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('articles.index') }}">
@@ -36,5 +42,6 @@
         <span>Медиаресурсы</span>
     </a>
 </li>
+
 
 

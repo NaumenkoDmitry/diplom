@@ -14,7 +14,8 @@ $factory->define(Article::class, function (Faker $faker) {
         'text' => $faker->text(3000),
         'status_id' => $faker->randomFloat(0,1,3),
         'user_id' => $faker->randomFloat(0,1,10),
-        'created_at'=>$faker->dateTimeBetween('-2 years')->format("Y-m-d")
+        'created_at'=>$faker->dateTimeBetween('-2 years')->format("Y-m-d"),
+        'view_count'=>$faker->numberBetween(0,1000)
     ];
 });
 $factory->afterCreating(Article::class, function (Article $article, Faker $faker) {

@@ -49,9 +49,10 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     <div class="footer_widget wow fadeInRightBig">
-                        <h2>Контакты</h2>
-
-
+                        <h2 >Контакты</h2>
+                        <p>Сведения для связи</p>
+                        <p>Номер: +380996161273</p>
+                        <p>Почта: naumenko.he@gmail.com</p>
                     </div>
                 </div>
 

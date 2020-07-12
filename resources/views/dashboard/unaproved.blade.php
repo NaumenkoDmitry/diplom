@@ -21,6 +21,7 @@
                     <td>
                         {{$article->title}}
                     </td>
+
                     <td>
                         <span class="badge badge-warning js-status">{{$article->status->name}}</span>
                     </td>

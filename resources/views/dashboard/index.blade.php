@@ -18,13 +18,12 @@
                                 <div class="col-lg-6">
                                     @include('dashboard.unaproved')
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-lg-6">
-                                    @include('dashboard.useronline')
+                                    @include('dashboard.feedback')
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

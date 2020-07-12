@@ -22,8 +22,8 @@
 
 <!-- Categories Id Field -->
 <div class="form-group col-sm-6" data-toggle="tooltip" data-placement="bottom" title="Выбор категории">
-    {!! Form::label('article_category', 'Категории:') !!}
-    {!! Form::select('article_category', \App\Models\Categories::all()->pluck('name', 'id'), null, ['class' => 'form-control']) !!}
+    {!! Form::label('categories', 'Категории:') !!}
+    {!! Form::select('categories[]', \App\Models\Categories::all()->pluck('name', 'id'), null, ['class' => 'form-control', "multiple"=>"true"]) !!}
 </div>
 
 

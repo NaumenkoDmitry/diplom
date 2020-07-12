@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -65,5 +66,8 @@ class Media extends Model
     public function articles()
     {
         return $this->belongsToMany(\App\Models\Article::class, 'article_media');
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }
