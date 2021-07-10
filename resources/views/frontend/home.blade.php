@@ -52,8 +52,7 @@
                                 <li>
                                     <div class="media"><a href="{{route("article", ["id"=>$post->slug])}}"
                                                           class="media-left">
-                                            <img alt=""
-                                                 src="{{\Illuminate\Support\Facades\Storage::url("images/middle/".$post->media->first()->src) }}"/></a>
+{{--                                            <img alt="img" src="{{\Illuminate\Support\Facades\Storage::url("images/middle/".$post->media->first()->src) }}"/></a>--}}
                                         <div class="media-body"><a href="{{route("article", ["id"=>$post->slug])}}"
                                                                    class="catg_title">
                                                 {{$post->title}}</a></div>
